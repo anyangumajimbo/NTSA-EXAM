@@ -661,38 +661,46 @@ const section2Questions = [
 let currentSection = null;
 let currentQuestionIndex = 0;
 
-// DOM elements
-const welcomeScreen = document.getElementById('welcomeScreen');
-const testSelection = document.getElementById('testSelection');
-const section1Container = document.getElementById('section1Container');
-const section2Container = document.getElementById('section2Container');
-const section1Completion = document.getElementById('section1Completion');
-const section2Completion = document.getElementById('section2Completion');
+// DOM elements - will be initialized after DOM loads
+let welcomeScreen, testSelection, section1Container, section2Container, section1Completion, section2Completion;
+let section1ProgressBar, section1QuestionNumber, section1QuestionText, section1AnswersContainer, section1PrevBtn, section1NextBtn;
+let section2ProgressBar, section2QuestionNumber, section2QuestionText, section2AnswersContainer, section2PrevBtn, section2NextBtn;
+let startBtn, startSection1Btn, startSection2Btn, proceedToSection2Btn, restartSection1Btn, restartAllBtn, backToSelectionBtn;
 
-// Section 1 elements
-const section1ProgressBar = document.getElementById('section1ProgressBar');
-const section1QuestionNumber = document.getElementById('section1QuestionNumber');
-const section1QuestionText = document.getElementById('section1QuestionText');
-const section1AnswersContainer = document.getElementById('section1AnswersContainer');
-const section1PrevBtn = document.getElementById('section1PrevBtn');
-const section1NextBtn = document.getElementById('section1NextBtn');
+// Initialize DOM elements
+function initializeDOMElements() {
+    welcomeScreen = document.getElementById('welcomeScreen');
+    testSelection = document.getElementById('testSelection');
+    section1Container = document.getElementById('section1Container');
+    section2Container = document.getElementById('section2Container');
+    section1Completion = document.getElementById('section1Completion');
+    section2Completion = document.getElementById('section2Completion');
 
-// Section 2 elements
-const section2ProgressBar = document.getElementById('section2ProgressBar');
-const section2QuestionNumber = document.getElementById('section2QuestionNumber');
-const section2QuestionText = document.getElementById('section2QuestionText');
-const section2AnswersContainer = document.getElementById('section2AnswersContainer');
-const section2PrevBtn = document.getElementById('section2PrevBtn');
-const section2NextBtn = document.getElementById('section2NextBtn');
+    // Section 1 elements
+    section1ProgressBar = document.getElementById('section1ProgressBar');
+    section1QuestionNumber = document.getElementById('section1QuestionNumber');
+    section1QuestionText = document.getElementById('section1QuestionText');
+    section1AnswersContainer = document.getElementById('section1AnswersContainer');
+    section1PrevBtn = document.getElementById('section1PrevBtn');
+    section1NextBtn = document.getElementById('section1NextBtn');
 
-// Buttons
-const startBtn = document.getElementById('startBtn');
-const startSection1Btn = document.getElementById('startSection1Btn');
-const startSection2Btn = document.getElementById('startSection2Btn');
-const proceedToSection2Btn = document.getElementById('proceedToSection2Btn');
-const restartSection1Btn = document.getElementById('restartSection1Btn');
-const restartAllBtn = document.getElementById('restartAllBtn');
-const backToSelectionBtn = document.getElementById('backToSelectionBtn');
+    // Section 2 elements
+    section2ProgressBar = document.getElementById('section2ProgressBar');
+    section2QuestionNumber = document.getElementById('section2QuestionNumber');
+    section2QuestionText = document.getElementById('section2QuestionText');
+    section2AnswersContainer = document.getElementById('section2AnswersContainer');
+    section2PrevBtn = document.getElementById('section2PrevBtn');
+    section2NextBtn = document.getElementById('section2NextBtn');
+
+    // Buttons
+    startBtn = document.getElementById('startBtn');
+    startSection1Btn = document.getElementById('startSection1Btn');
+    startSection2Btn = document.getElementById('startSection2Btn');
+    proceedToSection2Btn = document.getElementById('proceedToSection2Btn');
+    restartSection1Btn = document.getElementById('restartSection1Btn');
+    restartAllBtn = document.getElementById('restartAllBtn');
+    backToSelectionBtn = document.getElementById('backToSelectionBtn');
+}
 
 // Show a specific page
 function showPage(page) {
@@ -708,6 +716,7 @@ function showPage(page) {
 
 // Initialize the app
 function initApp() {
+    initializeDOMElements(); // Initialize DOM elements here
     showPage(welcomeScreen);
 }
 
@@ -790,36 +799,42 @@ function showSection2Question() {
     }
 }
 
-// Event listeners
-if (startBtn) startBtn.addEventListener('click', showTestSelection);
-
-if (startSection1Btn) startSection1Btn.addEventListener('click', () => startSection('section1'));
-if (startSection2Btn) startSection2Btn.addEventListener('click', () => startSection('section2'));
-
-if (section1NextBtn) section1NextBtn.addEventListener('click', () => {
-    currentQuestionIndex++;
-    showSection1Question();
-});
-
-if (section1PrevBtn) section1PrevBtn.addEventListener('click', () => {
-    currentQuestionIndex--;
-    showSection1Question();
-});
-
-if (section2NextBtn) section2NextBtn.addEventListener('click', () => {
-    currentQuestionIndex++;
-    showSection2Question();
-});
-
-if (section2PrevBtn) section2PrevBtn.addEventListener('click', () => {
-    currentQuestionIndex--;
-    showSection2Question();
-});
-
-if (proceedToSection2Btn) proceedToSection2Btn.addEventListener('click', () => startSection('section2'));
-if (restartSection1Btn) restartSection1Btn.addEventListener('click', () => startSection('section1'));
-if (restartAllBtn) restartAllBtn.addEventListener('click', initApp);
-if (backToSelectionBtn) backToSelectionBtn.addEventListener('click', showTestSelection);
-
 // Initialize the app when the page loads
-document.addEventListener('DOMContentLoaded', initApp); 
+document.addEventListener('DOMContentLoaded', function () {
+    initializeDOMElements();
+    setupEventListeners();
+    initApp();
+});
+
+// Setup event listeners
+function setupEventListeners() {
+    if (startBtn) startBtn.addEventListener('click', showTestSelection);
+
+    if (startSection1Btn) startSection1Btn.addEventListener('click', () => startSection('section1'));
+    if (startSection2Btn) startSection2Btn.addEventListener('click', () => startSection('section2'));
+
+    if (section1NextBtn) section1NextBtn.addEventListener('click', () => {
+        currentQuestionIndex++;
+        showSection1Question();
+    });
+
+    if (section1PrevBtn) section1PrevBtn.addEventListener('click', () => {
+        currentQuestionIndex--;
+        showSection1Question();
+    });
+
+    if (section2NextBtn) section2NextBtn.addEventListener('click', () => {
+        currentQuestionIndex++;
+        showSection2Question();
+    });
+
+    if (section2PrevBtn) section2PrevBtn.addEventListener('click', () => {
+        currentQuestionIndex--;
+        showSection2Question();
+    });
+
+    if (proceedToSection2Btn) proceedToSection2Btn.addEventListener('click', () => startSection('section2'));
+    if (restartSection1Btn) restartSection1Btn.addEventListener('click', () => startSection('section1'));
+    if (restartAllBtn) restartAllBtn.addEventListener('click', initApp);
+    if (backToSelectionBtn) backToSelectionBtn.addEventListener('click', showTestSelection);
+} 
