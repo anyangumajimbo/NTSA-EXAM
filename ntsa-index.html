@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTSA General Questions and Answers Test</title>
+    <link rel="stylesheet" href="ntsa-styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <h1>NTSA<br>GENERAL ANSWERS AND QUESTIONS TEST</h1>
+            <p>Test your knowledge of Kenyan traffic rules and regulations</p>
+            <button class="btn" id="startBtn">Start Test</button>
+        </div>
+        
+        <!-- Question Containers -->
+        <div class="question-container" id="questionContainer">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="question-number" id="questionNumber"></div>
+            <div class="question" id="questionText"></div>
+            <div class="answers" id="answersContainer"></div>
+            <div class="button-container">
+                <button class="btn" id="prevBtn" style="display: none;">Previous</button>
+                <button class="btn" id="nextBtn">Next</button>
+            </div>
+        </div>
+        
+        <!-- Completion Screen -->
+        <div class="completion-screen" id="completionScreen">
+            <div class="icon">🎉</div>
+            <h1>Congratulations!</h1>
+            <p>You've completed all the questions.<br>You are now ready to take the NTSA exam!</p>
+            <button class="btn" id="restartBtn">Restart Test</button>
+        </div>
+    </div>
+
+    <script src="ntsa-script.js"></script>
+</body>
+</html> 

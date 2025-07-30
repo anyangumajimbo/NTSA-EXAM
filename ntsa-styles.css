@@ -1,0 +1,237 @@
+:root {
+    --ntsa-green: #006837;
+    --ntsa-black: #000000;
+    --ntsa-white: #FFFFFF;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--ntsa-white);
+    color: var(--ntsa-black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="50" height="50" x="0" y="0" fill="%23006837" opacity="0.1"/><rect width="50" height="50" x="50" y="50" fill="%23006837" opacity="0.1"/></svg>');
+    background-size: 100px 100px;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    background-color: var(--ntsa-white);
+    border: 3px solid var(--ntsa-green);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: var(--ntsa-green);
+}
+
+h1 {
+    color: var(--ntsa-green);
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background-color: var(--ntsa-green);
+}
+
+.welcome-screen h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.welcome-screen p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.question-container {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.question-number {
+    font-size: 1rem;
+    color: var(--ntsa-green);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.question {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.answers {
+    text-align: left;
+    margin-bottom: 30px;
+    padding-left: 20px;
+}
+
+.answer {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 30px;
+}
+
+.answer::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--ntsa-green);
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.btn {
+    background-color: var(--ntsa-green);
+    color: var(--ntsa-white);
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #004d27;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.button-container .btn {
+    margin-top: 0;
+    flex: 1;
+    max-width: 150px;
+}
+
+.progress-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin: 20px 0;
+    height: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--ntsa-green);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.completion-screen {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.completion-screen h1 {
+    color: var(--ntsa-green);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.completion-screen p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.completion-screen .icon {
+    font-size: 4rem;
+    color: var(--ntsa-green);
+    margin-bottom: 20px;
+    animation: bounce 1s infinite alternate;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 20px 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .question {
+        font-size: 1.2rem;
+    }
+
+    .answer {
+        font-size: 1rem;
+    }
+}
