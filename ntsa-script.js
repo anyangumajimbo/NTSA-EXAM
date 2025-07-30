@@ -687,8 +687,8 @@ const section2NextBtn = document.getElementById('section2NextBtn');
 
 // Buttons
 const startBtn = document.getElementById('startBtn');
-const section1Btn = document.getElementById('section1Btn');
-const section2Btn = document.getElementById('section2Btn');
+const startSection1Btn = document.getElementById('startSection1Btn');
+const startSection2Btn = document.getElementById('startSection2Btn');
 const proceedToSection2Btn = document.getElementById('proceedToSection2Btn');
 const restartSection1Btn = document.getElementById('restartSection1Btn');
 const restartAllBtn = document.getElementById('restartAllBtn');
@@ -696,8 +696,12 @@ const backToSelectionBtn = document.getElementById('backToSelectionBtn');
 
 // Show a specific page
 function showPage(page) {
+    if (!page) return;
+
     // Hide all pages
-    document.querySelectorAll('.welcome-screen, .test-selection, .question-container, .completion-screen').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.welcome-screen, .test-selection, .question-container, .completion-screen').forEach(p => {
+        if (p) p.style.display = 'none';
+    });
     // Show the specified page
     page.style.display = 'block';
 }
@@ -787,35 +791,35 @@ function showSection2Question() {
 }
 
 // Event listeners
-startBtn.addEventListener('click', showTestSelection);
+if (startBtn) startBtn.addEventListener('click', showTestSelection);
 
-section1Btn.addEventListener('click', () => startSection('section1'));
-section2Btn.addEventListener('click', () => startSection('section2'));
+if (startSection1Btn) startSection1Btn.addEventListener('click', () => startSection('section1'));
+if (startSection2Btn) startSection2Btn.addEventListener('click', () => startSection('section2'));
 
-section1NextBtn.addEventListener('click', () => {
+if (section1NextBtn) section1NextBtn.addEventListener('click', () => {
     currentQuestionIndex++;
     showSection1Question();
 });
 
-section1PrevBtn.addEventListener('click', () => {
+if (section1PrevBtn) section1PrevBtn.addEventListener('click', () => {
     currentQuestionIndex--;
     showSection1Question();
 });
 
-section2NextBtn.addEventListener('click', () => {
+if (section2NextBtn) section2NextBtn.addEventListener('click', () => {
     currentQuestionIndex++;
     showSection2Question();
 });
 
-section2PrevBtn.addEventListener('click', () => {
+if (section2PrevBtn) section2PrevBtn.addEventListener('click', () => {
     currentQuestionIndex--;
     showSection2Question();
 });
 
-proceedToSection2Btn.addEventListener('click', () => startSection('section2'));
-restartSection1Btn.addEventListener('click', () => startSection('section1'));
-restartAllBtn.addEventListener('click', initApp);
-backToSelectionBtn.addEventListener('click', showTestSelection);
+if (proceedToSection2Btn) proceedToSection2Btn.addEventListener('click', () => startSection('section2'));
+if (restartSection1Btn) restartSection1Btn.addEventListener('click', () => startSection('section1'));
+if (restartAllBtn) restartAllBtn.addEventListener('click', initApp);
+if (backToSelectionBtn) backToSelectionBtn.addEventListener('click', showTestSelection);
 
 // Initialize the app when the page loads
 document.addEventListener('DOMContentLoaded', initApp); 
