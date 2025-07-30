@@ -195,6 +195,92 @@ h1::after {
     animation: bounce 1s infinite alternate;
 }
 
+.test-selection {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.test-selection h1 {
+    color: var(--ntsa-green);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.test-selection h1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background-color: var(--ntsa-green);
+}
+
+.test-selection p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.test-options {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.test-option {
+    background: var(--ntsa-white);
+    border: 2px solid var(--ntsa-border);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.test-option:hover {
+    border-color: var(--ntsa-green);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 104, 55, 0.1);
+}
+
+.test-option h3 {
+    color: var(--ntsa-green);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.test-option p {
+    color: var(--ntsa-gray);
+    font-size: 1rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.completion-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.completion-buttons .btn {
+    margin-top: 0;
+}
+
+.completion-screen h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--ntsa-black);
+    margin-bottom: 20px;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -233,5 +319,27 @@ h1::after {
 
     .answer {
         font-size: 1rem;
+    }
+
+    .test-options {
+        gap: 20px;
+    }
+
+    .test-option {
+        padding: 20px;
+    }
+
+    .test-option h3 {
+        font-size: 1.3rem;
+    }
+
+    .completion-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .completion-buttons .btn {
+        width: 100%;
+        max-width: 250px;
     }
 }
