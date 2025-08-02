@@ -139,6 +139,11 @@ h1::after {
     font-weight: bold;
 }
 
+/* Remove bullet points for numbered points */
+.numbered-point::before {
+    content: none !important;
+}
+
 .btn {
     background-color: var(--ntsa-green);
     color: var(--ntsa-white);

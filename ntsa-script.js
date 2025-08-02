@@ -433,9 +433,8 @@ const section2Questions = [
     {
         question: "How many types of parking does NTSA recognize? Name them:",
         answers: [
-            "Parallel parking",
-            "Angle parking (45°)",
-            "Perpendicular parking (90°)"
+            "Angle/Ample/controlled parking",
+            "parallel/flush/uncontrolled parking",
         ]
     },
     {
@@ -465,6 +464,7 @@ const section2Questions = [
     {
         question: "Name three emergency vehicles with right of way:",
         answers: [
+            "Presidential escort",
             "Ambulances",
             "Police vehicles",
             "Fire engines"
@@ -479,7 +479,7 @@ const section2Questions = [
     },
     {
         question: "Who is a pillion passenger?",
-        answers: ["A person seated behind a motorcycle rider"]
+        answers: ["A passenger on a motorcycle or bicycle"]
     },
     {
         question: "What's the safe following distance on highways?",
@@ -487,7 +487,22 @@ const section2Questions = [
     },
     {
         question: "How should you approach a roundabout?",
-        answers: ["Give way to vehicles coming from your right"]
+        answers: [
+            "1. Slow Down",
+            "Reduce speed as you near the roundabout.",
+            "2. Check for Traffic",
+            "Look for vehicles already on the roundabout, especially from your right.",
+            "3. Give Way",
+            "Yield to vehicles already inside the roundabout.",
+            "4. Signal",
+            "Use indicators before entering and when exiting.",
+            "5. Choose Correct Lane",
+            "Pick the lane based on where you plan to exit.",
+            "6. Maintain Speed",
+            "Keep a steady speed inside the roundabout.",
+            "7. Exit Safely",
+            "Signal and merge carefully into your lane when leaving."
+        ]
     },
     {
         question: "What is a level crossing?",
@@ -513,16 +528,22 @@ const section2Questions = [
         answers: [
             "EAC-standard helmet",
             "Bright or reflective jacket",
+            "Hand glove",
             "Closed shoes"
         ]
     },
     {
         question: "How should a child under 12 be carried on a motorcycle?",
-        answers: ["Children under 12 should not be carried on motorcycles"]
+        answers: ["A child under 12 may only be carried if seated between the rider and one adult passenger,never behind the adult.",
+            "The child must wear a child-sized helmet and all passengers must wear helmets and reflective jackets."
+        ]
     },
     {
         question: "What are Kenya's motorcycle load limits?",
         answers: [
+            "Only one passenger",
+            "Cannot carry load and passenger at the same time.",
+            "Load limit is 50Kg",
             "Load must not be wider than handlebars",
             "Load must not be higher than the rider's head"
         ]
@@ -541,7 +562,7 @@ const section2Questions = [
     },
     {
         question: "What does 'Yield' mean in Kenyan traffic?",
-        answers: ["Give way to other road users"]
+        answers: ["To give way to other road users in certain situations, e.g. pedestrians, emergency vehicles."]
     },
     {
         question: "How is a three-point turn done?",
@@ -554,9 +575,12 @@ const section2Questions = [
     {
         question: "How do you perform a hill start?",
         answers: [
-            "Engage handbrake",
-            "Bring clutch to biting point",
-            "Accelerate and release handbrake"
+            "Engage handbrake, press clutch, shift into first gear",
+            "Check mirrors for traffic and boda bodas behind",
+            "Press accelerator slightly ",
+            "Lift clutch to bite point",
+            "Release handbrake and move off smoothly"
+
         ]
     },
     {
@@ -582,8 +606,11 @@ const section2Questions = [
     {
         question: "How do you park at angle parking?",
         answers: [
-            "Approach at 45°",
-            "Enter the marked space within the bay lines"
+            "Signal your intention to park.",
+            "Slow down as you approach the space.",
+            "Approach at an angle of 45 or 60 degrees.",
+            "Turn smoothly into the space and straighten wheels.",
+            "Stop fully in the space and engage handbrake."
         ]
     },
     {
@@ -602,7 +629,9 @@ const section2Questions = [
         question: "Why wouldn't you proceed when traffic lights turn green?",
         answers: [
             "If the junction is blocked",
-            "If pedestrians are still crossing"
+            "If pedestrians are still crossing",
+            "When police officers signals you to stop"
+
         ]
     },
     {
@@ -638,6 +667,25 @@ const section2Questions = [
     {
         question: "What is vehicle drift?",
         answers: ["Side movement due to tire loss of grip or control"]
+    },
+    {
+        question: "Name any four types of fluids found in a saloon car and state their functions.",
+        answers: [
+            "1. Engine Oil",
+            "Lubricates engine parts to reduce friction and prevent overheating.",
+            "2. Coolant / Radiator Water",
+            "Cools the engine by absorbing excess heat.",
+            "3. Brake Fluid",
+            "Transfers pressure in the brake system, enabling the car to stop.",
+            "4. Windshield Washer Fluid",
+            "Cleans the windscreen for better visibility.",
+            "5. Transmission Fluid (Automatic cars)",
+            "Lubricates and cools the transmission system.",
+            "6. Power Steering Fluid",
+            "Assists in making steering smooth and easy.",
+            "7. Battery Electrolyte (for non-sealed batteries)",
+            "Allows chemical reaction to store and release electrical energy."
+        ]
     },
     {
         question: "What are black spots?",
@@ -837,6 +885,28 @@ function showSection2Question() {
             // Skip bullets for Question 6 (index 5) and keep numbering
             if (currentQuestionIndex === 5) {
                 // Check if this is a numbered main point or an explanation
+                if (answer.match(/^\d+\./)) {
+                    // This is a main point - make it green and bold
+                    answerElement.className = 'numbered-point';
+                    answerElement.innerHTML = `<span class="key-term">${answer}</span>`;
+                } else {
+                    // This is an explanation - regular styling
+                    answerElement.className = 'answer';
+                    answerElement.textContent = answer;
+                }
+            } else if (currentQuestionIndex === 12) {
+                // Roundabout question - same formatting as clutch question
+                if (answer.match(/^\d+\./)) {
+                    // This is a main point - make it green and bold
+                    answerElement.className = 'numbered-point';
+                    answerElement.innerHTML = `<span class="key-term">${answer}</span>`;
+                } else {
+                    // This is an explanation - regular styling
+                    answerElement.className = 'answer';
+                    answerElement.textContent = answer;
+                }
+            } else if (currentQuestionIndex === 20) {
+                // Car fluids question - same formatting as clutch question
                 if (answer.match(/^\d+\./)) {
                     // This is a main point - make it green and bold
                     answerElement.className = 'numbered-point';
