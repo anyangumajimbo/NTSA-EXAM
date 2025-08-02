@@ -117,6 +117,28 @@ h1::after {
     line-height: 1;
 }
 
+.answer.sub-point {
+    padding-left: 40px;
+    margin-left: 20px;
+}
+
+.answer.numbered-point {
+    padding-left: 20px;
+    margin-left: 10px;
+    position: relative;
+}
+
+.answer.numbered-point .key-term,
+.numbered-point .key-term {
+    color: var(--ntsa-green);
+    font-weight: bold;
+}
+
+.numbered-point {
+    color: var(--ntsa-green);
+    font-weight: bold;
+}
+
 .btn {
     background-color: var(--ntsa-green);
     color: var(--ntsa-white);

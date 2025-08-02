@@ -309,7 +309,7 @@ const section1Questions = [
     },
     {
         question: "What does a green arrow filter light mean?",
-        answers: ["Proceed in the arrow's direction if clear and safe"]
+        answers: ["It's safe to proceed in the direction indicated by the arrow, even if the main traffic light is red."]
     },
     {
         question: "When the traffic light shows Green and you are stopped by the police officers who do you obey?",
@@ -362,9 +362,10 @@ const section1Questions = [
     {
         question: "Which vehicles require inspection?",
         answers: [
-            "Heavy Commercial Vehicles",
-            "Public Service Vehicles (PSVs)",
-            "Pick-ups"
+            "All vehicles, but especially:",
+            "• Heavy Commercial Vehicles",
+            "• Public Service Vehicles (PSVs)",
+            "• Pick-ups"
         ]
     },
     {
@@ -409,7 +410,18 @@ const section2Questions = [
     },
     {
         question: "When should you use the clutch?",
-        answers: ["Only when changing gears or stopping completely"]
+        answers: [
+            "1. Starting the Car",
+            "Press the clutch fully before starting the engine.",
+            "2. Changing Gears",
+            "Always press the clutch pedal fully when shifting from one gear to another.",
+            "3. Slowing Down or Stopping",
+            "Press the clutch when your speed is too low for the current gear to avoid stalling (gari kuzima).",
+            "4. Driving Slowly in Traffic or on a Hill",
+            "Use the clutch with the brake to control speed, especially in slow traffic or on slopes.",
+            "5. Reversing",
+            "Fully press the clutch before engaging the reverse gear."
+        ]
     },
     {
         question: "What's the difference between a lane and a line?",
@@ -436,7 +448,7 @@ const section2Questions = [
     },
     {
         question: "What is a filter lane?",
-        answers: ["A lane allowing turning without stopping flowing traffic"]
+        answers: ["A filter lane is a special road lane that allows vehicles to turn left or right, even when other vehicles are stopped at a red light."]
     },
     {
         question: "Explain Kenya's 4-second rule:",
@@ -757,10 +769,42 @@ function showSection1Question() {
         section1AnswersContainer.innerHTML = '';
 
         // Add new answers
-        question.answers.forEach(answer => {
+        question.answers.forEach((answer, index) => {
             const answerElement = document.createElement('div');
             answerElement.className = 'answer';
-            answerElement.textContent = answer;
+
+            // Check if this is a numbered point (starts with number) - this takes priority
+            if (answer.match(/^\d+\./)) {
+                answerElement.classList.add('numbered-point');
+
+                // Extract key terms and make them green
+                const keyTerms = ['Starting the Car', 'Changing Gears', 'Slowing Down or Stopping', 'Driving Slowly in Traffic or on a Hill', 'Reversing'];
+                let processedText = answer;
+
+                keyTerms.forEach(term => {
+                    if (processedText.includes(term)) {
+                        processedText = processedText.replace(term, `<span class="key-term">${term}</span>`);
+                    }
+                });
+
+                answerElement.innerHTML = processedText;
+            } else if (answer.startsWith('•') || answer.startsWith('·')) {
+                answerElement.classList.add('sub-point');
+                // Remove the bullet from the text since CSS will add it
+                answerElement.textContent = answer.replace(/^[•·]\s*/, '');
+            } else if (answer.includes('Heavy Commercial') ||
+                answer.includes('Public Service') ||
+                answer.includes('Pick-ups') ||
+                answer.includes('Valid driving') ||
+                answer.includes('Valid road') ||
+                answer.includes('Valid insurance') ||
+                answer.includes('Vehicle inspection')) {
+                answerElement.classList.add('sub-point');
+                answerElement.textContent = answer;
+            } else {
+                answerElement.textContent = answer;
+            }
+
             section1AnswersContainer.appendChild(answerElement);
         });
     } else {
@@ -787,10 +831,58 @@ function showSection2Question() {
         section2AnswersContainer.innerHTML = '';
 
         // Add new answers
-        question.answers.forEach(answer => {
+        question.answers.forEach((answer, index) => {
             const answerElement = document.createElement('div');
-            answerElement.className = 'answer';
-            answerElement.textContent = answer;
+
+            // Skip bullets for Question 6 (index 5) and keep numbering
+            if (currentQuestionIndex === 5) {
+                // Check if this is a numbered main point or an explanation
+                if (answer.match(/^\d+\./)) {
+                    // This is a main point - make it green and bold
+                    answerElement.className = 'numbered-point';
+                    answerElement.innerHTML = `<span class="key-term">${answer}</span>`;
+                } else {
+                    // This is an explanation - regular styling
+                    answerElement.className = 'answer';
+                    answerElement.textContent = answer;
+                }
+            } else {
+                // Default behavior for other questions
+                answerElement.className = 'answer';
+
+                // Check if this is a numbered point (starts with number) - this takes priority
+                if (answer.match(/^\d+\./)) {
+                    answerElement.classList.add('numbered-point');
+
+                    // Extract key terms and make them green
+                    const keyTerms = ['Starting the Car', 'Changing Gears', 'Slowing Down or Stopping', 'Driving Slowly in Traffic or on a Hill', 'Reversing'];
+                    let processedText = answer;
+
+                    keyTerms.forEach(term => {
+                        if (processedText.includes(term)) {
+                            processedText = processedText.replace(term, `<span class="key-term">${term}</span>`);
+                        }
+                    });
+
+                    answerElement.innerHTML = processedText;
+                } else if (answer.startsWith('•') || answer.startsWith('·')) {
+                    answerElement.classList.add('sub-point');
+                    // Remove the bullet from the text since CSS will add it
+                    answerElement.textContent = answer.replace(/^[•·]\s*/, '');
+                } else if (answer.includes('Heavy Commercial') ||
+                    answer.includes('Public Service') ||
+                    answer.includes('Pick-ups') ||
+                    answer.includes('Valid driving') ||
+                    answer.includes('Valid road') ||
+                    answer.includes('Valid insurance') ||
+                    answer.includes('Vehicle inspection')) {
+                    answerElement.classList.add('sub-point');
+                    answerElement.textContent = answer;
+                } else {
+                    answerElement.textContent = answer;
+                }
+            }
+
             section2AnswersContainer.appendChild(answerElement);
         });
     } else {
