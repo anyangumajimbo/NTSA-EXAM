@@ -58,7 +58,6 @@ const section1Questions = [
             "When driving close behind another vehicle.",
             "When meeting traffic from opposite direction.",
             "When driving in an area where streets have lights.",
-            "When there is a mist or fog."
         ]
     },
     {
@@ -177,7 +176,9 @@ const section1Questions = [
     },
     {
         question: "What should you do when being overtaken?",
-        answers: ["Do not accelerate"]
+        answers: ["Do not accelerate",
+                  "Keep left and maintain steady speed"
+        ]
     },
     {
         question: "What should you do after being overtaken at night?",
@@ -320,7 +321,7 @@ const section1Questions = [
     },
     {
         question: "When should you use vehicle lights?",
-        answers: ["6:30 PM to 6:30 AM (adjust for weather conditions)"]
+        answers: ["6:30 PM to 6:30 AM (depending on the weather conditions)"]
     },
     {
         question: "What should you do when you receive your first driving license?",
@@ -440,9 +441,12 @@ const section2Questions = [
     {
         question: "Explain the overtaking procedure (MSM):",
         answers: [
-            "Check mirrors",
-            "Signal your intention",
-            "Manoeuvre when safe"
+            "Check if the road ahead is clear",
+            "Check mirrors for traffic behind",
+            "Signal right and hoot (flash lights at night)",
+            "Manoeuvre when safe",
+            "Return to the left lane safely"
+            
         ]
     },
     {
@@ -642,12 +646,13 @@ const section2Questions = [
         question: "Why is maximum speed more dangerous at night?",
         answers: [
             "Visibility is reduced",
-            "Stopping distance remains the same"
+            "Slower Reaction Time",
+            "Increased Risk of Drunk Driving"
         ]
     },
     {
         question: "What is an acceleration lane?",
-        answers: ["A lane used to speed up when joining a highway"]
+        answers: ["A short extra lane on a highway or expressway that lets drivers speed up to match traffic flow before merging."]
     },
     {
         question: "How do you alert others during emergencies?",
@@ -658,7 +663,7 @@ const section2Questions = [
     },
     {
         question: "What is a climbing lane?",
-        answers: ["An extra lane for slow vehicles on steep roads"]
+        answers: ["An extra lane on a steep uphill slope, allowing slower vehicles (like trucks) to move aside so faster traffic can pass safely."]
     },
     {
         question: "Define dual carriageway:",
