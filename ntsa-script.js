@@ -177,7 +177,7 @@ const section1Questions = [
     {
         question: "What should you do when being overtaken?",
         answers: ["Do not accelerate",
-                  "Keep left and maintain steady speed"
+            "Keep left and maintain steady speed"
         ]
     },
     {
@@ -301,11 +301,16 @@ const section1Questions = [
     {
         question: "What is the safe overtaking procedure?",
         answers: [
-            "Check if the road ahead is clear",
-            "Check mirrors for traffic behind",
-            "Signal right and hoot (flash lights at night)",
-            "Overtake quickly, leaving space",
-            "Return to the left lane safely"
+            "M – Mirrors",
+            "Check rear and side mirrors for traffic behind.",
+            "Ensure no one is overtaking you.",
+            "S – Signal",
+            "Indicate right to show your intention.",
+            "Alert other road users early.",
+            "M – Manoeuvre",
+            "Check ahead for a clear road.",
+            "Overtake quickly and smoothly when safe.",
+            "Return to your lane safely after passing."
         ]
     },
     {
@@ -441,12 +446,16 @@ const section2Questions = [
     {
         question: "Explain the overtaking procedure (MSM):",
         answers: [
-            "Check if the road ahead is clear",
-            "Check mirrors for traffic behind",
-            "Signal right and hoot (flash lights at night)",
-            "Manoeuvre when safe",
-            "Return to the left lane safely"
-            
+            "M – Mirrors",
+            "Check rear and side mirrors for traffic behind.",
+            "Ensure no one is overtaking you.",
+            "S – Signal",
+            "Indicate right to show your intention.",
+            "Alert other road users early.",
+            "M – Manoeuvre",
+            "Check ahead for a clear road.",
+            "Overtake quickly and smoothly when safe.",
+            "Return to your lane safely after passing."
         ]
     },
     {
@@ -841,6 +850,10 @@ function showSection1Question() {
                 });
 
                 answerElement.innerHTML = processedText;
+            } else if (answer.match(/^[MS] – /)) {
+                // This is an MSM main point - make it green and bold
+                answerElement.className = 'numbered-point';
+                answerElement.innerHTML = `<span class="key-term">${answer}</span>`;
             } else if (answer.startsWith('•') || answer.startsWith('·')) {
                 answerElement.classList.add('sub-point');
                 // Remove the bullet from the text since CSS will add it
@@ -914,6 +927,17 @@ function showSection2Question() {
                 // Car fluids question - same formatting as clutch question
                 if (answer.match(/^\d+\./)) {
                     // This is a main point - make it green and bold
+                    answerElement.className = 'numbered-point';
+                    answerElement.innerHTML = `<span class="key-term">${answer}</span>`;
+                } else {
+                    // This is an explanation - regular styling
+                    answerElement.className = 'answer';
+                    answerElement.textContent = answer;
+                }
+            } else if (currentQuestionIndex === 5) {
+                // Overtaking procedure question - same formatting as clutch question
+                if (answer.match(/^[MS] – /)) {
+                    // This is a main point (M – or S –) - make it green and bold
                     answerElement.className = 'numbered-point';
                     answerElement.innerHTML = `<span class="key-term">${answer}</span>`;
                 } else {
